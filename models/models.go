@@ -1,11 +1,11 @@
 package models
 
 import (
-	"github.com/jinzhu/gorm"
+	//"github.com/jinzhu/gorm"
 	"time"
 )
 type Participation struct {
-	gorm.Model
+	ID int
 	username int
 	confirmation bool
 	rejection string
@@ -14,6 +14,7 @@ type Participation struct {
 }
 type Person struct {
 	ID int
+	TeamId int
 	FirstName string
 	LastName string
 	Mobil string
@@ -27,7 +28,7 @@ type Person struct {
 	Team Team
 }
 type Function struct {
-	gorm.Model
+	ID int
 	PersonId int
 	Info string
 	Person Person
@@ -35,7 +36,7 @@ type Function struct {
 	Squads []Squad
 }
 type Squad struct {
-	gorm.Model
+	ID int
 	Name string
 	Info string
 	Team Team
@@ -44,20 +45,23 @@ type Squad struct {
 	LineUp LineUp
 }
 type LineUp struct {
-	gorm.Model
+	ID int
 	Version int
+	TeamId int
+	Team Team
 	//PositionX []int
 	//PositionY []int
 	Image string
 }
 type Team struct {
-	gorm.Model
+	ID int
+	PersonId int
 	LineUps []LineUp
 	Persons []Person
 	Info string
 }
 type Date struct {
-	gorm.Model
+	ID int
 	Name string
 	Place string
 	Day time.Time
@@ -66,18 +70,18 @@ type Date struct {
 
 }
 type DateType struct {
-	gorm.Model
+	ID int
 	Name string
 	Squads []Squad
 }
 type FunctionType struct {
-	gorm.Model
+	ID int
 	Function []Function
 	Name string
 	Short string
 }
 type PositionType struct {
-	gorm.Model
+	ID int
 	Participations []Participation
 	Name string
 	Short string

@@ -10,7 +10,9 @@ func CreateRoutes(){
 	v1 := r.Group("api/v1")
 	{
 		v1.GET("/people", Handler.GetUsers)
-		v1.GET("/teams", Handler.GetUsers)
+		v1.GET("/teams", Handler.GetTeams)
+		v1.GET("/members", Handler.GetTeamMembers)
+		v1.GET("/membersbyposition", Handler.GetMembersByPosition)
 		/*v1.GET("/dates", handler.GetUsers)
 		v1.GET("/datetypes", handler.GetUsers)
 		v1.GET("/functiontypes", handler.GetUsers)

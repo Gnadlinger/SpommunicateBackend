@@ -5,27 +5,26 @@ import (
 	"github.com/gnadlinger/SpommunicateBackend/models"
 	"container/list"
 )
-type Team struct{
+type TeamDto struct{
 	Persons []models.Person
 }
 func  GetTeams(c *gin.Context) {
-	c.JSON(200, db.Find([]models.Team{}))
+	c.JSON(200, db.Preload("LineUps").Preload("Persons").Find(&[]models.Team{}))
+	//c.JSON(200, db.Preload("Functions").Find(&[]models.Person{}))
+
 }
 func GetTeamMembers(c *gin.Context){
-	c.JSON(200, db.Table("teams").
+	c.JSON(200, db.Preload("People").Table("teams").
 		Select("people").
 		Where("info=?",c.Params.ByName("id")))
 
 }
 func GetMembersByPosition(c *gin.Context){
-	db.Table("teams").Select("people").Where("positiontype=?",c.Params.ByName("position"))
-	db.Table("teams").
-		Select("people").
-		Where("info=?",c.Params.ByName("id"))
-	var team Team
+	var team TeamDto
 	persons:=list.New()
 
-	db.Table("teams").Select("people").Where("info=?",c.Params.ByName("id")).Scan(&team)
+	db.Preload("People").Table("teams").Select("people").
+		Where("info=?",c.Params.ByName("id")).Scan(&team)
 	for _,element:= range team.Persons {
 		if element.PositionType.Name == c.Params.ByName("position") {
 			persons.PushFront(element)
