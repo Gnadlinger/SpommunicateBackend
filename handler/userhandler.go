@@ -2,9 +2,10 @@ package Handler
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/gnadlinger/Spommunicate1/models"
+	"github.com/gnadlinger/SpommunicateBackend/models"
 )
 
 func  GetUsers(c *gin.Context) {
-	c.JSON(200, db.Find(&[]models.Person{}))
+	//db.Preload("Functions").First(&models.Person{},1)
+	c.JSON(200, db.Preload("Functions").Find(&[]models.Person{}))
 }

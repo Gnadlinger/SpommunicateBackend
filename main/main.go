@@ -3,15 +3,15 @@ package main
 import (
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	//"github.com/gnadlinger/Spommunicate1/handler"
-	"github.com/gnadlinger/Spommunicate1/routes"
-	"github.com/gnadlinger/Spommunicate1/models"
+	"github.com/gnadlinger/SpommunicateBackend/routes"
+	"github.com/gnadlinger/SpommunicateBackend/models"
 	"github.com/jinzhu/gorm"
 	"time"
 )
 var db, err = gorm.Open("mysql", "Gnadlinger:admin@/spommunicatedb?charset=utf8&parseTime=True&loc=Local")
 func main() {
 	defer db.Close()
-//foo
+	//foo
 	if err != nil {
 		panic("failed to connect database")
 	}
@@ -35,7 +35,4 @@ func main() {
 	db.Create(&user2)
 	db.Create(&user3)
 	routes.CreateRoutes()
-
-	var u models.Person
-	db.Debug().First(&u).Related(&u.Functions)
 }

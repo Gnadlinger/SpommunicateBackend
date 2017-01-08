@@ -2,7 +2,7 @@ package Handler
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/gnadlinger/Spommunicate1/models"
+	"github.com/gnadlinger/SpommunicateBackend/models"
 	"container/list"
 )
 type Team struct{

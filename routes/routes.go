@@ -2,7 +2,7 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/gnadlinger/Spommunicate1/handler"
+	"github.com/gnadlinger/SpommunicateBackend/handler"
 )
 
 func CreateRoutes(){

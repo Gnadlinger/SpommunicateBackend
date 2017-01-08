@@ -1,6 +1,6 @@
 package Handler
 import (
-	"github.com/gnadlinger/Spommunicate1/models"
+	"github.com/gnadlinger/SpommunicateBackend/models"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	"time"
