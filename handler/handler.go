@@ -36,5 +36,11 @@ func  AddTeamToPlayer(c *gin.Context) {
 	db.Model(&models.Person{}).Where("username=?",username).
 			Update("team",db.Find(&models.Person{}).Where("info=?",team))
 }
+func  PostPlayerToTeam(c *gin.Context) {
+	username := c.PostForm("username")
+	team := c.PostForm("team")
+	db.Model(&models.Team{}).Where("info=?",team).
+	UpdateColumn("Persons",db.Find(&models.Person{}).Where("username=?",username))
+}
 
 

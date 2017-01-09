@@ -8,7 +8,8 @@ type TeamDto struct{
 	Persons []models.Person
 }
 func  GetTeams(c *gin.Context) {
-	c.JSON(200, db.Preload("LineUps").Preload("Persons").Find(&[]models.Team{}).Select("info"))
+	c.JSON(200, db.Preload("LineUps").Preload("Persons").
+		Find(&[]models.Team{}).Select("info"))
 	//c.JSON(200, db.Preload("Functions").Find(&[]models.Person{}))
 
 }
