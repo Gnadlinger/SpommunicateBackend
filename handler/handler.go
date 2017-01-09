@@ -18,7 +18,9 @@ func  GetFunctions(c *gin.Context) {
 	c.JSON(200, db.Find([]models.Function{}))
 }
 func  GetLineUps(c *gin.Context) {
-	c.JSON(200, db.Find([]models.LineUp{}))
+	c.JSON(200,db.
+		Find(&[]models.LineUp{}).
+		Where("info=?",c.Param("team")))
 }
 func  GetParticipations(c *gin.Context) {
 	c.JSON(200, db.Find([]models.Participation{}))
