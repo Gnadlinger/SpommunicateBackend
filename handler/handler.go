@@ -23,10 +23,18 @@ func  GetLineUps(c *gin.Context) {
 		Where("info=?",c.Param("team")))
 }
 func  GetParticipations(c *gin.Context) {
-	c.JSON(200, db.Find([]models.Participation{}))
+	//var i = c.Param("username")
+	c.JSON(200, db.Preload("Person").Find(&[]models.Participation{}).
+		Where("username=?",c.Param("username")))
 }
-func  GetSquads(c *gin.Context) {
-	c.JSON(200, db.Find([]models.Squad{}))
+func GetUser(c *gin.Context){
+	c.JSON(200, db.Where("username = ?", c.Param("username")).Find(&models.Person{}))
+}
+func  AddTeamToPlayer(c *gin.Context) {
+	username := c.PostForm("username")
+	team := c.PostForm("team")
+	db.Model(&models.Person{}).Where("username=?",username).
+			Update("team",db.Find(&models.Person{}).Where("info=?",team))
 }
 
 

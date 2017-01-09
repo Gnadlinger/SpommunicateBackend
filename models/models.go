@@ -6,15 +6,17 @@ import (
 )
 type Participation struct {
 	ID int
-	username int
-	confirmation bool
-	rejection string
+	Username int
+	Confirmation bool
+	Rejection string
 	Person Person
 	Date Date
 }
 type Person struct {
 	ID int
 	TeamId int
+	ParticipationId int
+	FunctionId int
 	FirstName string
 	LastName string
 	Mobil string
@@ -33,14 +35,12 @@ type Function struct {
 	Info string
 	Person Person
 	FunctionType FunctionType
-	Squads []Squad
 }
 type Squad struct {
 	ID int
 	Name string
 	Info string
-	Team Team
-	Function []Function
+	Person []Person
 	Dates []Date
 	LineUp LineUp
 }
@@ -56,6 +56,7 @@ type LineUp struct {
 type Team struct {
 	ID int
 	PersonId int
+	LineUpId int
 	LineUps []LineUp
 	Persons []Person
 	Info string
@@ -65,14 +66,12 @@ type Date struct {
 	Name string
 	Place string
 	Day time.Time
-	Squad Squad
 	DateType DateType
 
 }
 type DateType struct {
 	ID int
 	Name string
-	Squads []Squad
 }
 type FunctionType struct {
 	ID int
@@ -82,8 +81,9 @@ type FunctionType struct {
 }
 type PositionType struct {
 	ID int
-	Participations []Participation
 	Name string
 	Short string
 }
+
+
 

@@ -8,14 +8,14 @@ type TeamDto struct{
 	Persons []models.Person
 }
 func  GetTeams(c *gin.Context) {
-	c.JSON(200, db.Preload("LineUps").Preload("Persons").Find(&[]models.Team{}))
+	c.JSON(200, db.Preload("LineUps").Preload("Persons").Find(&[]models.Team{}).Select("info"))
 	//c.JSON(200, db.Preload("Functions").Find(&[]models.Person{}))
 
 }
 func GetTeamMembers(c *gin.Context){
 	var i = c.Param("team")
-	c.JSON(200, db.Preload("LineUps").Preload("Persons").Find(&[]models.Team{}).
-		Select("Persons").Where("info=?",i))
+	c.JSON(200, db.Find(&[]models.Person{}).
+		Where("Info=?",i))
 
 	/*c.JSON(200, db.Preload("Persons").Table("teams").
 		Select("Persons").

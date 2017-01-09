@@ -7,5 +7,5 @@ import (
 
 func  GetUsers(c *gin.Context) {
 	//db.Preload("Functions").First(&models.Person{},1)
-	c.JSON(200, db.Preload("Functions").Find(&[]models.Person{}))
+	c.JSON(200, db.Find(&[]models.Person{}).Select("username"))
 }
